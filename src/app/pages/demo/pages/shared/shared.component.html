@@ -2,8 +2,10 @@
 
 <form [formGroup]="form" novalidate autocomplete="off" (ngSubmit)="onSubmit()">
 
+  <app-button type="submit">Submit</app-button>
   <app-button (click)="onPatchValue()">Patch Value</app-button>
   <app-button (click)="onToggleInLine()">Toggle inline</app-button>
+  <app-button (click)="onToggleDisable()">Toggle Disable</app-button>
   <br><br><br>
 
   <app-form-field
