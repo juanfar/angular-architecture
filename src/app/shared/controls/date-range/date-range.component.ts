@@ -1,5 +1,5 @@
 import { Component, forwardRef, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormBuilder, FormGroup } from '@angular/forms';
 
 export interface Value {
   from: number,
