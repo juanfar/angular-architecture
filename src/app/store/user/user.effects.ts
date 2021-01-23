@@ -30,6 +30,26 @@ export class UserEffects {
   ) { }
 
   @Effect()
+  sigInEmail: Observable<Action> = this.actions.pipe(
+    ofType(fromActions.Types.SIGN_IN_EMAIL),
+    map((action: fromActions.SignInEmail) => action.credentials),
+    switchMap(credentials => 
+      from(this.afAuth.signInWithEmailAndPassword(credentials.email, credentials.password)).pipe(
+        switchMap(signInState =>
+          this.afs.doc<User>(`user/${signInState.user.uid}`).valueChanges().pipe(
+            take(1),
+            map(user => new fromActions.SignInEmailSuccess(signInState.user.uid, user || null ))
+          )
+        ),
+        catchError(err => {
+          this.notification.error(err.message);
+          return of(new fromActions.SignInEmailError(err.message));
+        })
+      )
+    )
+  );
+
+  @Effect()
   signUpEmail: Observable<Action> = this.actions.pipe(
     ofType(fromActions.Types.SIGN_UP_EMAIL),
     map((action: fromActions.SignUpEmail) => action.credentials),
@@ -46,6 +66,17 @@ export class UserEffects {
           this.notification.error(err.message);
           return of(new fromActions.SignUpEmailError(err.message));
         })
+      )
+    )
+  );
+
+  @Effect()
+  signOut: Observable<Action> = this.actions.pipe(
+    ofType(fromActions.Types.SIGN_OUT),
+    switchMap(() => 
+      from(this.afAuth.signOut()).pipe(
+        map(() => new fromActions.SignOutSuccess()),
+        catchError(err => of(new fromActions.SignOutError(err.message)))
       )
     )
   );

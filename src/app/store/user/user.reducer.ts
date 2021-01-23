@@ -48,15 +48,15 @@ export function reducer(state = initialState, action: fromActions.All): UserStat
 
     // Sign Out
 
-    case fromActions.Types.SIGN_OUT_EMAIL: {
+    case fromActions.Types.SIGN_OUT: {
       return { ...state, loading: true }
     }
 
-    case fromActions.Types.SIGN_OUT_EMAIL_SUCCESS: {
+    case fromActions.Types.SIGN_OUT_SUCCESS: {
       return { ...initialState };
     }
 
-    case fromActions.Types.SIGN_OUT_EMAIL_ERROR: {
+    case fromActions.Types.SIGN_OUT_ERROR: {
       return { ...state, error: action.error, loading: false };
     }
 

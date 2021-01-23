@@ -10,9 +10,9 @@ export enum Types {
   SIGN_UP_EMAIL_SUCCESS = '[User] Sign Up with email: Success',
   SIGN_UP_EMAIL_ERROR = '[User] Sign Up with email: Error',
   
-  SIGN_OUT_EMAIL = '[User] Sign Out with email: Start',
-  SIGN_OUT_EMAIL_SUCCESS = '[User] Sign Out with email: Success',
-  SIGN_OUT_EMAIL_ERROR = '[User] Sign Out with email: Error',
+  SIGN_OUT = '[User] Sign Out: Start',
+  SIGN_OUT_SUCCESS = '[User] Sign Out: Success',
+  SIGN_OUT_ERROR = '[User] Sign Out: Error',
 }
 
 // Sign In
@@ -51,18 +51,18 @@ export class SignUpEmailError implements Action {
 
 // Sign Out
 
-export class SignOutEmail implements Action {
-  readonly type = Types.SIGN_OUT_EMAIL;
+export class SignOut implements Action {
+  readonly type = Types.SIGN_OUT;
   constructor() { }
 }
 
-export class SignOutEmailSuccess implements Action {
-  readonly type = Types.SIGN_OUT_EMAIL_SUCCESS;
+export class SignOutSuccess implements Action {
+  readonly type = Types.SIGN_OUT_SUCCESS;
   constructor() { }
 }
 
-export class SignOutEmailError implements Action {
-  readonly type = Types.SIGN_OUT_EMAIL_ERROR;
+export class SignOutError implements Action {
+  readonly type = Types.SIGN_OUT_ERROR;
   constructor(public error: string) { }
 }
 
@@ -73,6 +73,6 @@ export type All
   | SignUpEmail
   | SignUpEmailSuccess
   | SignUpEmailError
-  | SignOutEmail
-  | SignOutEmailSuccess
-  | SignOutEmailError;
+  | SignOut
+  | SignOutSuccess
+  | SignOutError;
