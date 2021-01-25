@@ -14,7 +14,7 @@ export const getLoading = createSelector (
   (state) => state.loading
 );
 
-export const isAuthorized = createSelector (
+export const getIsAuthorized = createSelector (
   getUserState,
   (state) => !!state.uid
 );
