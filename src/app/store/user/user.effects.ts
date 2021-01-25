@@ -55,6 +55,9 @@ export class UserEffects {
         switchMap(signInState =>
           this.afs.doc<User>(`user/${signInState.user.uid}`).valueChanges().pipe(
             take(1),
+            tap(() => {
+              this.router.navigate(['/']);
+            }),
             map(user => new fromActions.SignInEmailSuccess(signInState.user.uid, user || null ))
           )
         ),
